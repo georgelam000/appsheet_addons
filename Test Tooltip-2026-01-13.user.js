@@ -16,7 +16,9 @@
 
     // Your code here...
     $(document).ready(function() {
-        var tipcontent = "&nbsp;<a href='#' title='This is tooltip'><i class='far fa-question-circle'></i></a>";
-        $("div[role='heading']:first").append(tipcontent);
+        setTimeout(function(){
+           var tipcontent = "&nbsp;<a href='#' title='This is tooltip'><i class='far fa-question-circle'></i></a>";
+           $("div[role='heading']:first").append(tipcontent);
+        },1000);
     });
 })();
