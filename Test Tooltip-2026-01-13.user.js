@@ -16,16 +16,7 @@
 
     // Your code here...
     $(document).ready(function() {
-        var i = 1;
-        while ( i < 60) {
-            if ($("div[role='heading']:first") != undefined) {
-                setTimeout(function(){
-                    var tipcontent = "&nbsp;<a href='#' title='This is tooltip'><i class='far fa-question-circle'></i></a>";
-                    $("div[role='heading']:first").append(tipcontent);
-                },1000);
-                break;
-            }
-            i++;
-        }
+        var tipcontent = "&nbsp;<a href='#' title='This is tooltip'><i class='far fa-question-circle'></i></a>";
+        $("div[role='heading']:first").append(tipcontent);
     });
 })();
