@@ -8,7 +8,6 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=tampermonkey.net
 // @grant        none
 // @require      https://code.jquery.com/jquery-3.7.1.js
-// @require      https://code.jquery.com/ui/1.14.1/jquery-ui.js
 // ==/UserScript==
 /* global $ */
 (function() {
@@ -19,6 +18,7 @@
         setTimeout(function(){
            var tipcontent = "&nbsp;<a href='#' title='This is tooltip'><i class='far fa-question-circle'></i></a>";
            $("div[role='heading']:first").append(tipcontent);
+           $("div[data-testid='Updated_month']:first").append("Month selected is: " + $("input[aria-label='Month']").val());
         },1000);
     });
 })();
