@@ -36,10 +36,6 @@
             }),
             onload: function(response) {
                 resultJson = JSON.parse(response.responseText);
-                $.each(resultJson, function(i, item) {
-                    var mapKey = item.PSS_Supplier_Code + item.Product_barcode + item.Master_Barcode + item.PSS_Client_Code + item.PSS_Warehouse;
-                    resultMap.set(mapKey, item);
-                });
             }
         }).catch(e => console.error(e));
 
@@ -61,9 +57,14 @@
                 monthLast = "0" + monthLast;
             }
             var previousMonth = yearLast + monthLast;
-
-           $("div[data-testonly-column='Version_Number']").each(function( index ) {
-               var rowElement = $(this).parent().parent();
+            $.each(resultJson, function(i, item) {
+                var mapKey = item.PSS_Supplier_Code + item.Product_barcode + item.Master_Barcode + item.PSS_Client_Code + item.PSS_Warehouse;
+                if (item.Update_Month == previousMonth) {
+                    resultMap.set(mapKey, item);
+                }
+            });
+           $("span[data-testid='table-view-row']").each(function( index ) {
+               var rowElement = $(this);
                var PSS_Supplier_Code = rowElement.find("div[data-testonly-column='PSS_Supplier_Code']").text();
                var Product_barcode = rowElement.find("div[data-testonly-column='Product_barcode']").text();
                var Master_Barcode = rowElement.find("div[data-testonly-column='Master_Barcode']").text();
@@ -111,9 +112,7 @@
                    rowElement.find("div[data-testonly-column='M12']").html("<a href='#' title='No Previous Data'>" + M12Html + "</a>");
                }
            });
-        },10000);
-
-
+        },5000);
 
     });
 })();
